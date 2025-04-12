@@ -22,7 +22,7 @@ uploaded_file = st.file_uploader("Upload Excel file", type=["xlsx"])
 if uploaded_file is not None:
     try:
         sheet_name = st.text_input("Sheet name", value="Prices")
-        df = pd.read_excel(uploaded_file, sheet_name=sheet_name, index_col=0, parse_dates=True)
+        df = pd.read_excel(uploaded_file, sheet_name=sheet_name, index_col=0, engine='openpyxl', parse_dates=True)
         df = df.sort_index()
         df = df.fillna(method='ffill').dropna()
 
